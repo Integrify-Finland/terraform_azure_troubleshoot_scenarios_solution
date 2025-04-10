@@ -57,18 +57,18 @@ resource "azurerm_network_security_group" "sg_8080" {
 }
 
 resource "azurerm_network_security_rule" "allow_8080" {
-     name                                  = "allow_8080"
-    priority                              = 100
-    direction                             = "Inbound"
-    access                                = "Allow"
-    protocol                              = "Tcp"
-    source_port_range                     = 8080
-    destination_port_range                = 8080
-    source_address_prefix                 = "*"
-    destination_address_prefix            = "*"
-    source_application_security_group_ids = [azurerm_network_security_group.sg_ping.id]
-  resource_group_name         = azurerm_resource_group.rg.name
-  network_security_group_name = azurerm_network_security_group.sg_8080
+  name                                  = "allow_8080"
+  priority                              = 100
+  direction                             = "Inbound"
+  access                                = "Allow"
+  protocol                              = "Tcp"
+  source_port_range                     = 8080
+  destination_port_range                = 8080
+  source_address_prefix                 = "*"
+  destination_address_prefix            = "*"
+  source_application_security_group_ids = [azurerm_network_security_group.sg_ping.id]
+  resource_group_name                   = azurerm_resource_group.rg.name
+  network_security_group_name           = azurerm_network_security_group.sg_8080.name
 }
 
 
@@ -81,18 +81,18 @@ resource "azurerm_network_security_group" "sg_ping" {
 }
 
 resource "azurerm_network_security_rule" "allow_ping" {
-    name                                  = "allow_ping"
-    priority                              = 100
-    direction                             = "Inbound"
-    access                                = "Allow"
-    protocol                              = "Icmp"
-    source_port_range                     = "*"
-    destination_port_range                = "*"
-    source_address_prefix                 = "*"
-    destination_address_prefix            = "*"
-    source_application_security_group_ids = [azurerm_network_security_group.sg_8080.id]
-  resource_group_name         = azurerm_resource_group.rg.name
-  network_security_group_name = azurerm_network_security_group.sg_ping.name
+  name                                  = "allow_ping"
+  priority                              = 100
+  direction                             = "Inbound"
+  access                                = "Allow"
+  protocol                              = "Icmp"
+  source_port_range                     = "*"
+  destination_port_range                = "*"
+  source_address_prefix                 = "*"
+  destination_address_prefix            = "*"
+  source_application_security_group_ids = [azurerm_network_security_group.sg_8080.id]
+  resource_group_name                   = azurerm_resource_group.rg.name
+  network_security_group_name           = azurerm_network_security_group.sg_ping.name
 }
 
 # Create (and display) an SSH key
